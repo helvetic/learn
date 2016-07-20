@@ -18,6 +18,8 @@ module.exports = {
     app02: './app02',
     app03: './app03',
     app04: './app04',
+    app05: './app05',
+    app06: './app06',
     //common: './first/common',
   },
 
