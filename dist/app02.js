@@ -1,5 +1,5 @@
 var app02 =
-webpackJsonp_name_([0,5],[
+webpackJsonp_name_([0],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 

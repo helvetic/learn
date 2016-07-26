@@ -3,8 +3,181 @@
 <head>
   <meta charset="UTF-8">
   <title>App</title>
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/4.1.1/normalize.css" media="screen" charset="utf-8">
+  <style media="screen">
+    html,
+    body{
+    height: 100%;
+    }
+
+
+    body{
+    position: relative;
+    font-size: 15px;
+    font-family: 'Fira Sans', sans-serif;
+    min-width: 460px;
+    line-height: 1.5;
+    }
+
+    .container{
+    flex-direction: column;
+    min-height: 100%;
+    width:500px;
+    margin: 0 auto;
+    padding-top:80px;
+    box-sizing: border-box;
+    }
+
+    .logo{
+    display: block;
+    margin: 20px auto 20px;
+    }
+
+    .accordeon{
+    width: 460px;
+    margin: 0 auto;
+    }
+
+    .accordeon-item{
+    margin:5px 0;
+    background: #e7e7e7;
+    border-radius: 20px;
+    }
+    .accordeon-title,
+    .accordeon-text{
+    box-sizing: border-box;
+    }
+    .accordeon-title{
+    display: flex;
+    position: relative;
+    width: 100%;
+    padding:5px 25px;
+    height: 40px;
+    border:none;
+    outline: none;
+    border-radius: 20px;
+    background: #e7e7e7;
+    align-items: center;
+    user-select:none;
+    transition: background .3s ease;
+    }
+    .accordeon-item:nth-child(2n - 1) .accordeon-title{
+    background: #696666;
+    color:#fff;
+    }
+    .accordeon-title:hover,
+    .accordeon-item:nth-child(2n - 1) .accordeon-title:hover{
+    background: #79b2e4;
+    color: #fff;
+    transition: background .1s ease;
+    }
+    .accordeon-title:hover:before,
+    .accordeon-item:nth-child(2n - 1) .accordeon-title:hover:before{
+    color:#fff;
+    }
+    .accordeon-title:active{
+    box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+
+
+    .accordeon-title:before {
+    content:'\25BC';
+    position: absolute;
+    right:15px;
+    top:8px;
+    font-size:16px;
+    transform: scaleX(1.2);
+    color: #ff8663;
+    }
+
+    .accordeon-item.active .accordeon-title:before {
+    content:'\25B2';
+    color: #fff;
+    }
+
+
+    .accordeon-text{
+    display: none;
+    padding:10px 25px;
+    }
+    .accordeon-item.active .accordeon-title{
+    background: #ff8663;
+    color: #fff;
+    }
+    .accordeon-item.active .accordeon-text{
+    display: block;
+    }
+
+    .drag-square{
+      position: absolute;
+    }
+    .create-square{
+      position: relative;
+      z-index: 5;
+    }
+  </style>
 </head>
 <body>
+
+  <button id="create-square" class="create-square">Создать элемент</button>
+
+
+  <div class="container">
+
+    <div class="accordeon">
+
+      <div class="accordeon-item active">
+        <button class="accordeon-title">
+          Основы языка и как на нём говорить правильно
+        </button>
+        <div class="accordeon-text">
+          Лексическая структура<br>
+          Типы данных, значения и переменные<br>
+          Выражения и операторы инструкции
+        </div>
+      </div>
+
+      <div class="accordeon-item">
+        <button class="accordeon-title">
+          Функции
+        </button>
+        <div class="accordeon-text">
+          11
+        </div>
+      </div>
+
+      <div class="accordeon-item">
+        <button class="accordeon-title">
+          Обработка ошибок и отладка
+        </button>
+        <div class="accordeon-text">
+          11
+        </div>
+      </div>
+
+      <div class="accordeon-item">
+        <button class="accordeon-title">
+          Объекты и массивы
+        </button>
+        <div class="accordeon-text">
+          11
+        </div>
+      </div>
+
+      <div class="accordeon-item">
+        <button class="accordeon-title">
+          События
+        </button>
+        <div class="accordeon-text">
+          11
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
 
   <script type="text/javascript" src="common.js"></script>
   <script type="text/javascript" src="app06.js"></script>
