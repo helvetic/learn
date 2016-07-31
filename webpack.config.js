@@ -21,6 +21,8 @@ module.exports = {
     app05: './app05',
     app06: './app06',
     app07: './app07',
+    app08: './app08',
+    app09: './app09',
     //common: './first/common',
   },
 
@@ -53,6 +55,7 @@ module.exports = {
       minChunks: 2,
       //chunks: ['app','app2']
     }),
+    new webpack.HotModuleReplacementPlugin()
   ],
 
 
@@ -85,6 +88,13 @@ module.exports = {
     }]
 
   },
+
+
+  devServer: {
+    contentBase: __dirname + '/dist',
+    hot: true
+  }
+
 
 
 };
