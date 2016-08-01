@@ -28,49 +28,22 @@ export default function cities(url = 'https://raw.githubusercontent.com/smelukov
 
 
   }).then((responseText) => {
-    return new Promise((resolve, reject) => {
-      let citiesList = JSON.parse(responseText);
+    let citiesList = JSON.parse(responseText);
+    citiesList = citiesList.map(city => city.name).sort();
+    pasteCitiesList(citiesList);
 
-      citiesList.sort( function( a, b ) {
-          a = a.name.toLowerCase();
-          b = b.name.toLowerCase();
-          return a<b?-1:a>b?1:0;
+    cities_filter.addEventListener('keyup', function(){
+      let newCitiesList = citiesList.filter(city => {
+        return city.toLowerCase().includes(this.value);
       });
-
-      pasteCitiesList(citiesList);
-      resolve(citiesList);
+      pasteCitiesList(newCitiesList);
     });
 
-
-
-  }).then((citiesList) => {
-    return new Promise((resolve, reject) => {
-      cities_filter.addEventListener('keyup', function(){
-
-        let newCitiesList = [];
-
-        for ({name} of citiesList) {
-          if(name.toLowerCase().includes(this.value)){
-            newCitiesList.push({
-              'name': name
-            });
-          }
-        }
-
-        pasteCitiesList(newCitiesList);
-
-      });
-    });
   });
-
-
 };
 
 
 function pasteCitiesList(citiesList){
-  let citiesListHTML = '';
-  for ({name} of citiesList) {
-    citiesListHTML += `<li>${name}</li>\n`;
-  }
+  let citiesListHTML = citiesList.map(city => `<li>${city}</li>`).join('\n');
   cities_container.innerHTML = citiesListHTML;
 }
