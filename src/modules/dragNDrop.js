@@ -45,7 +45,9 @@ export class Dnd{
 
     let activeElement,
         offsetX = 0,
-        offsetY = 0;
+        offsetY = 0,
+        newOffsetX = 0,
+        newOffsetY = 0;
 
     sq.addEventListener('mousedown', function(e){
       activeElement = e.target;
@@ -57,12 +59,17 @@ export class Dnd{
     sq.addEventListener('mouseup', function(e){
       activeElement.classList.remove('active');
       activeElement = null;
+      obj.left = newOffsetX;
+      obj.top = newOffsetY;
+      console.log(obj);
     });
 
     sq.addEventListener('mousemove', function(e){
       if (activeElement != null) {
-        activeElement.style.top = (e.clientY - offsetY) + 'px';
-        activeElement.style.left = (e.clientX - offsetX) + 'px';
+        newOffsetY = e.clientY - offsetY + 'px';
+        activeElement.style.top = newOffsetY;
+        newOffsetX = e.clientX - offsetX + 'px';
+        activeElement.style.left = newOffsetX;
       }
     });
 
