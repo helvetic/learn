@@ -15,14 +15,15 @@
  Если какое-то из полей формы не заполнено, то, при нажатии на кнопку "добавить", cookie не должна быть создана, а на экран должен быть выведен alert с предупреждением "Заполните все поля формы".
  Так же заметьте, что при работе с формой и таблицей, не должно быть перезагрузок страницы
  */
-export default function cookie() {
+export function cookie() {
 
   let cookieTable = drawCookieTable();
 
   cookieTable.addEventListener('click', function(e){
     if(e.target.dataset.action == 'delete'){
-      deleteCookie(e.target.dataset.cookie);
-      e.target.parentNode.parentNode.remove();
+      if(deleteCookie(e.target.dataset.cookie)){
+        e.target.parentNode.parentNode.remove();
+      }
     }
   });
 
@@ -50,6 +51,27 @@ export default function cookie() {
 
 
 
+export function setCookie(name, value, options = ''){
+  let optionsSeparator = (options) ? '; ' : '';
+  document.cookie = `${name}=${value}${optionsSeparator}${options}`;
+}
+
+
+
+export function getCookie(name) {
+  let result = document.cookie.split('; ').find((cookieRow) => {
+    let cookieRowArray = cookieRow.split('=');
+    if(cookieRowArray[0] == name){
+      return cookieRowArray[1];
+    }
+  });
+  if(result){
+    return result.split('=')[1];
+  }
+}
+
+
+
 function drawCookieTable() {
   let cookieArray = cookieSplit();
   let cookieRows = cookieToTable(cookieArray);
@@ -65,7 +87,6 @@ function drawCookieTable() {
 
 
 function cookieSplit() {
-
   let cookieArray = [];
 
   document.cookie.split('; ').forEach((cookieRow) => {
@@ -98,7 +119,6 @@ function cookieToTable(cookieArray){
 
 
 
-
 function addCookie(name, value, expires){
   let date = new Date;
   date.setDate(date.getDate() + Number(expires));
@@ -109,18 +129,12 @@ function addCookie(name, value, expires){
 
 
 
-function setCookie(name, value, options = ''){
-  let optionsSeparator = (options) ? '; ' : '';
-  document.cookie = `${name}=${value}${optionsSeparator}${options}`;
-}
-
-
-
 function deleteCookie(name){
   if(confirm(`Удалить ${name}?`)){
     let date = new Date(0);
     date = date.toUTCString();
     document.cookie = `${name}=; path=/; expires=${date}`;
     console.log(`${name}=; path=/; expires=${date}`);
+    return true;
   }
 }
