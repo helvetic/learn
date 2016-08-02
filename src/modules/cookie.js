@@ -32,20 +32,25 @@ export function cookie() {
 
     let obj = {};
 
-    for (let {localName, name, value} of this) {
-      if(localName == 'input'){
-
-        if(value === ''){
+    for (let input of this) {
+      if(input.localName == 'input'){
+        if(input.value === ''){
           alert('Заполните все поля');
           return;
         }else{
-          obj[name] = value;
+          obj[input.name] = input.value;
         }
+      }
+    }
 
+    for (let input of this) {
+      if(input.localName == 'input'){
+        input.value = '';
       }
     }
 
     addCookie(obj['cookie-name'],obj['cookie-value'],obj['cookie-expires']);
+
   });
 }
 
@@ -53,7 +58,7 @@ export function cookie() {
 
 export function setCookie(name, value, options = ''){
   let optionsSeparator = (options) ? '; ' : '';
-  document.cookie = `${name}=${value}${optionsSeparator}${options}`;
+  document.cookie = `${name}=${value};path=/${optionsSeparator}${options}`;
 }
 
 
@@ -95,9 +100,8 @@ function cookieSplit() {
       'key': cookieRowArray[0],
       'val': cookieRowArray[1]
     };
-    cookieArray.push(obj);
+    if (obj.key != '') cookieArray.push(obj);
   });
-
   return cookieArray;
 }
 
@@ -133,8 +137,10 @@ function deleteCookie(name){
   if(confirm(`Удалить ${name}?`)){
     let date = new Date(0);
     date = date.toUTCString();
+    let path = window.location.pathname;
+    console.log(path);
     document.cookie = `${name}=; path=/; expires=${date}`;
-    console.log(`${name}=; path=/; expires=${date}`);
+    console.log(`${name}=; path=${path}; expires=${date}`);
     return true;
   }
 }

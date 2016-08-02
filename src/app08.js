@@ -26,8 +26,8 @@ import dragNDrop, {Dnd} from './modules/dragNDrop';
  */
 
 
-document.cookie = "name=NYAN";
-document.cookie = "type=CAT";
+// document.cookie = "name=NYAN";
+// document.cookie = "type=CAT";
 
 cookie();
 
