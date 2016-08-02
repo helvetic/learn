@@ -58,6 +58,7 @@ export function cookie() {
 
 export function setCookie(name, value, options = ''){
   let optionsSeparator = (options) ? '; ' : '';
+  console.log('setCookie',`${name}=${value};path=/${optionsSeparator}${options}`);
   document.cookie = `${name}=${value};path=/${optionsSeparator}${options}`;
 }
 
