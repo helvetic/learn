@@ -1,4 +1,5 @@
-import cookie from './modules/cookie';
+import {cookie, setCookie, getCookie} from './modules/cookie';
+import dragNDrop, {Dnd} from './modules/dragNDrop';
 
 /**
 ДЗ 1:
@@ -24,7 +25,23 @@ import cookie from './modules/cookie';
 После перезагрузки страницы, необходимо достать эту информацию из cookie и восстановить все div'ы (с их размерами, позицией и цветами)
  */
 
+
 document.cookie = "name=NYAN";
 document.cookie = "type=CAT";
 
 cookie();
+
+let dnd = new Dnd('#create_square');
+let squares = getCookie('squares'), squaresJSON;
+if(squares){
+  squaresJSON = JSON.parse(getCookie('squares'));
+  squaresJSON.forEach(el => {
+    dnd.createSquare(el)
+  });
+}
+
+save_square.addEventListener('click',() => {
+  console.log(dnd.squaresData);
+  document.querySelectorAll('.drag-square');
+  setCookie('squares',JSON.stringify(dnd.squaresData));
+});

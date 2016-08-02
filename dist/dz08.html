@@ -3,6 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <title>App</title>
+  <style>
+    html,
+      body{
+      height: 100%;
+    }
+
+
+    body{
+      position: relative;
+      font-size: 15px;
+      font-family: 'Fira Sans', sans-serif;
+      min-width: 460px;
+      line-height: 1.5;
+    }
+    .drag-square{
+      position: absolute;
+    }
+    .drag-square.active{
+      z-index:10;
+    }
+    .create-square{
+      position: relative;
+      z-index: 5;
+    }
+  </style>
 </head>
 <body>
 
@@ -12,6 +37,10 @@
     <input type="number" min="0" placeholder="Срок годности (количество дней)" name="cookie-expires">
     <button id="add_cookie_btn">Обновить</button>
   </form>
+  <hr>
+  <button id="create_square" class="create-square">Создать фигуру</button>
+  <button id="save_square" class="create-square">Сохранить</button>
+  <hr>
 
   <script type="text/javascript" src="common.js"></script>
   <script type="text/javascript" src="app08.js"></script>
