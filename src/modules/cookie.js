@@ -136,12 +136,8 @@ function addCookie(name, value, expires){
 
 function deleteCookie(name){
   if(confirm(`Удалить ${name}?`)){
-    let date = new Date(0);
-    date = date.toUTCString();
-    let path = window.location.pathname;
-    console.log(path);
-    document.cookie = `${name}=; path=/; expires=${date}`;
-    console.log(`${name}=; path=${path}; expires=${date}`);
+    document.cookie = `${name}=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+    console.log(`${name}=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;`);
     return true;
   }
 }
