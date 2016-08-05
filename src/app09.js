@@ -15,4 +15,5 @@ import VKFriends from './modules/friends';
 cities();
 
 
+console.info('app');
 let friends = new VKFriends();
