@@ -5,7 +5,7 @@
  */
 export default class VKFriends{
   constructor(){
-
+    console.info('VK FRIENDS');
     new Promise((resolve, reject) => {
       VK.init({apiId: 5575450});
       VK.Auth.login(function(response) {
@@ -34,7 +34,7 @@ export default class VKFriends{
     }).then(friendsList => {
       let nowDate = new Date();
       let friends = friendsList.response;
-      
+
       console.log('Друзья',friends);
 
       friendsList.current = {};
