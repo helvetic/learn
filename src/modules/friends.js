@@ -39,7 +39,7 @@ export default class VKFriends{
 
       friendsList.current = {};
       friendsList.current.day = nowDate.getDay();
-      friendsList.current.month = nowDate.getMonth();
+      friendsList.current.month = nowDate.getMonth() + 1;
 
       friends.sort(sortJSON);
       let startPos = friends.findIndex(el => {
