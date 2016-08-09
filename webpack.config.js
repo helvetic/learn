@@ -23,6 +23,7 @@ module.exports = {
     app07: './app07',
     app08: './app08',
     app09: './app09',
+    friends: './friends',
     //common: './first/common',
   },
 
