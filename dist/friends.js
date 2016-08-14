@@ -1,12 +1,12 @@
 var friends =
-webpackJsonp_name_([8],{
+webpackJsonp_name_([9],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _friendsFilter = __webpack_require__(112);
+	var _friendsFilter = __webpack_require__(130);
 
 	var _friendsFilter2 = _interopRequireDefault(_friendsFilter);
 
@@ -17,7 +17,7 @@ webpackJsonp_name_([8],{
 
 /***/ },
 
-/***/ 112:
+/***/ 130:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
