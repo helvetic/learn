@@ -16,7 +16,8 @@ export default class VKFriends{
       return new Promise(resolve => {
         VK.api('friends.get',
            {
-             fields: 'bdate, city, country, photo_100'
+             fields: 'bdate, city, country, photo_100',
+             https: 1
            },
            response => {
              resolve(response);
