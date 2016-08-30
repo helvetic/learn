@@ -12,7 +12,7 @@ let typeMap = {
 var srv = http.createServer( (req, res) => {
 
   let fileToRead = `./${req.url}`;
-  
+
   if(fileToRead != './/'){
     if(!fs.existsSync(fileToRead)){
       fileToRead = `./404.html`;
@@ -22,11 +22,14 @@ var srv = http.createServer( (req, res) => {
     let ext = path.extname(fileToRead);
     let contentType = typeMap[ext];
 
+    let stats = fs.statSync(fileToRead);
+
     res.setHeader('Content-Type', contentType);
     res.write(content);
+    res.write(`${req.url} (${stats.size} b)\n`);
   }
 
-  res.end('okay');
+  res.end();
 });
 
 srv.listen(7777, 'localhost', () => {
