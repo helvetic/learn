@@ -39,6 +39,13 @@ srv.listen(7777, 'localhost', () => {
 
 filesIterate('./');
 
+
+/**
+ * readdirSync  
+ *  
+ * @param {string} dir
+ * @param {string} [depth='']
+ */
 function filesIterate(dir, depth = ''){
   fs.readdirSync(dir).forEach( item => {
       let stats = fs.statSync(`${dir}${item}`);
